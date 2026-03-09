@@ -13,7 +13,7 @@ It is a part of the Himejoshi ecosystem, which aims to create a fully functional
 
 ## Preview 🖼️
 
-![Preview](./preview.png)
+![Preview](https://github.com/himejoshi-gay/asteria-AI/blob/main/.github/preview.png)
 
 
 ## Installation (with docker) 🐳
