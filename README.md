@@ -1,5 +1,3 @@
-# ⭐ asteriaAI - Bot used for the himejoshi discord server (very original name)
-
 ![462894956-551fc5b1-2f73-4792-9284-2c2f3452e42b](https://github.com/himejoshi-gay/asteria-AI/blob/main/.github/asteriaAI.png)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
