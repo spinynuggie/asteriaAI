@@ -3,7 +3,11 @@ import { container, Listener } from "@sapphire/framework";
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 import type { ScoreResponse } from "../../lib/types/api";
-import { getBeatmapById, WebSocketEventType } from "../../lib/types/api";
+import {
+  getBeatmapById,
+  getBeatmapByIdLeaderboard,
+  WebSocketEventType,
+} from "../../lib/types/api";
 
 @ApplyOptions<Listener.Options>({
   event: WebSocketEventType.NEW_SCORE_SUBMITTED,
@@ -18,6 +22,29 @@ export class NewScoreSubmissionListener extends Listener {
     this.container.client.logger.info(
       `NewScoreSubmissionListener: New score (id: ${score.id}) submitted, trying to send embed to scores channel.`,
     );
+
+    const leaderboard = await getBeatmapByIdLeaderboard({
+      path: {
+        id: score.beatmap_id,
+      },
+      query: {
+        mode: score.game_mode,
+        limit: 1,
+      },
+    });
+
+    if (!leaderboard || leaderboard.error) {
+      this.container.client.logger.error(
+        `NewScoreSubmissionListener: Couldn't fetch leaderboard for beatmap ${score.beatmap_id} in ${score.game_mode}.`,
+      );
+      return;
+    }
+
+    const topScore = leaderboard.data.scores[0];
+    const isTopScore = topScore?.id === score.id;
+
+    if (!isTopScore)
+      return;
 
     const scoresChannel = await this.container.client.channels
       .fetch(newScoresChannel.toString())
