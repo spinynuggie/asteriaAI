@@ -228,8 +228,10 @@ export class EmbedPresetsUtility extends Utility {
         break;
     }
 
+    const mods = score.mods?.trim() || "NM";
+
     const description
-      = `${getScoreRankEmoji(score.grade)} ${score.mods}`
+      = `${getScoreRankEmoji(score.grade)} ${mods}`
         + ` · ${
        numberWith(score.total_score, ",")
        } · `
@@ -272,7 +274,7 @@ export class EmbedPresetsUtility extends Utility {
   ) {
     const scoreEmbed = await this.getScoreEmbed(score, beatmap, true);
     const description = scoreEmbed.data.description ?? "";
-    const mods = score.mods ?? "NM";
+    const mods = score.mods?.trim() || "NM";
 
     scoreEmbed
       .setAuthor({
