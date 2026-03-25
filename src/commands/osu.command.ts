@@ -60,7 +60,7 @@ export class OsuCommand extends Subcommand {
     super(context, options);
 
     for (const cmd of subcommandModules) {
-      ;(this as any)[cmd.name] = async (interaction: Subcommand.ChatInputCommandInteraction) => {
+      ;(this as any)[cmd.camelName] = async (interaction: Subcommand.ChatInputCommandInteraction) => {
         return (cmd.run as any).call(this, interaction);
       };
     }
