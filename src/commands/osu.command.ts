@@ -7,6 +7,10 @@ import * as link from "../subcommands/osu/link.subcommand";
 import * as profile from "../subcommands/osu/profile.subcommand";
 import * as recentScore from "../subcommands/osu/recent-score.subcommand";
 import * as score from "../subcommands/osu/score.subcommand";
+import * as scoreHuntDuration from "../subcommands/osu/score-hunt-duration.subcommand";
+import * as scoreHuntStart from "../subcommands/osu/score-hunt-start.subcommand";
+import * as scoreHuntStatus from "../subcommands/osu/score-hunt-status.subcommand";
+import * as scoreHuntStop from "../subcommands/osu/score-hunt-stop.subcommand";
 import * as scores from "../subcommands/osu/scores.subcommand";
 import * as unlink from "../subcommands/osu/unlink.subcommand";
 
@@ -17,6 +21,10 @@ const rawModules = [
   { add: unlink.addUnlinkSubcommand, run: unlink.chatInputRunUnlinkSubcommand },
   { add: recentScore.addRecentScoreSubcommand, run: recentScore.chatInputRunRecentScoreSubcommand },
   { add: scores.addScoresSubcommand, run: scores.chatInputRunScoresSubcommand },
+  { add: scoreHuntDuration.addScoreHuntDurationSubcommand, run: scoreHuntDuration.chatInputRunScoreHuntDurationSubcommand },
+  { add: scoreHuntStart.addScoreHuntStartSubcommand, run: scoreHuntStart.chatInputRunScoreHuntStartSubcommand },
+  { add: scoreHuntStatus.addScoreHuntStatusSubcommand, run: scoreHuntStatus.chatInputRunScoreHuntStatusSubcommand },
+  { add: scoreHuntStop.addScoreHuntStopSubcommand, run: scoreHuntStop.chatInputRunScoreHuntStopSubcommand },
 ];
 
 const subcommandModules = rawModules.map((cmd) => {

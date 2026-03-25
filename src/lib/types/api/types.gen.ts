@@ -808,6 +808,7 @@ export type UsernameChangeRequest = {
 
 export enum WebSocketEventType {
     NEW_SCORE_SUBMITTED = 'NewScoreSubmitted',
+    BOT_SCORE_SUBMITTED = 'BotScoreSubmitted',
     CUSTOM_BEATMAP_STATUS_CHANGED = 'CustomBeatmapStatusChanged'
 }
 

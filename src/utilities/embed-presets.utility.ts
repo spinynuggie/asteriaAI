@@ -264,6 +264,36 @@ export class EmbedPresetsUtility extends Utility {
     return scoreEmbed;
   }
 
+  public async getScoreHuntEmbed(
+    score: ScoreResponse,
+    beatmap: BeatmapResponse,
+    durationText: string,
+    endsAt: Date,
+  ) {
+    const scoreEmbed = await this.getScoreEmbed(score, beatmap, true);
+    const description = scoreEmbed.data.description ?? "";
+    const mods = score.mods ?? "NM";
+
+    scoreEmbed
+      .setAuthor({
+        name: `${score.user.username} · score hunt target`,
+        iconURL: score.user.avatar_url,
+        url: `https://${config.sunrise.uri}/user/${score.user.user_id}`,
+      })
+      .setDescription(
+        `${description}\n\n`
+        + `**Hunt duration:** ${durationText}\n`
+        + `**Ends:** ${bold(time(endsAt, "R"))}\n`
+        + `**Required mod combination:** ${bold(mods)}\n`
+        + `**Win condition:** Beat this score during the hunt and finish #1 for this exact mod combination.`,
+      )
+      .setFooter({
+        text: `${score.game_mode_extended} · score hunt on himejoshi`,
+      });
+
+    return scoreEmbed;
+  }
+
   public async getCustomBeatmapStatusChangeEmbed(data: CustomBeatmapStatusChangeResponse) {
     const { bat, beatmap, new_status, old_status } = data;
 

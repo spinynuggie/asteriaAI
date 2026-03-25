@@ -10,6 +10,7 @@ import { GatewayIntentBits } from "discord.js";
 
 import { db } from "./database";
 import { config } from "./lib/configs/env";
+import { scoreHuntService } from "./lib/services/score-hunt.service";
 import type { WebSocketEventType } from "./lib/types/api";
 import { client as apiClient } from "./lib/types/api/client.gen";
 
@@ -40,6 +41,8 @@ export class SunshineClient extends SapphireClient {
 
     container.config = config;
     container.db = db;
+
+    void scoreHuntService.restoreActiveHunt();
   }
 
   private initWebsocket() {

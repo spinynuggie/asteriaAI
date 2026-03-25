@@ -8,6 +8,7 @@ import {
   getBeatmapByIdLeaderboard,
   WebSocketEventType,
 } from "../../lib/types/api";
+import { scoreHuntService } from "../../lib/services/score-hunt.service";
 
 @ApplyOptions<Listener.Options>({
   event: WebSocketEventType.NEW_SCORE_SUBMITTED,
@@ -15,6 +16,8 @@ import {
 })
 export class NewScoreSubmissionListener extends Listener {
   public async run(score: ScoreResponse) {
+    await scoreHuntService.trackSubmittedScore(score);
+
     const { newScoresChannel } = this.container.config.ids;
     if (!newScoresChannel)
       return;

@@ -17,6 +17,7 @@ It is a part of the Himejoshi ecosystem, which aims to create a fully functional
 ## Installation (with docker) 🐳
 1. Clone the repository
 2. Create copy of `.env.example` file as `.env` and fill all required fields
+	- `SCORE_HUNT_CHANNEL_ID` is the Discord channel where score hunt seed and result announcements are posted
 3. Update `config/prod.json` with you own emojis ids (You can find needed files in `data/emojis`)
 4. Run the following command to create docker container:
 ```bash
@@ -30,6 +31,7 @@ docker compose up -d
 2. Install the required dependencies: `bun install`
 3. Update `config/dev.json` with you own emojis ids (You can find needed files in `data/emojis`)
 4. Create copy of `.env.example` file as `.env` and fill all required fields
+	- `SCORE_HUNT_CHANNEL_ID` is the Discord channel where score hunt seed and result announcements are posted
 5. Start the application with `bun run start` or `bun run dev`
 
 ## Contributing 💖
