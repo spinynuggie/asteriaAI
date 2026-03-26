@@ -1,12 +1,11 @@
 import { container } from "@sapphire/framework";
 import type { TextBasedChannel } from "discord.js";
 
-import type { ScoreResponse } from "../types/api";
 import {
-  GameMode,
   getBeatmapByIdLeaderboard,
   Mods,
 } from "../types/api";
+import type { GameMode, ScoreResponse } from "../types/api/types.gen";
 
 type ScoreHuntStatus = "armed" | "active" | "cancelled" | "completed";
 
@@ -74,7 +73,7 @@ export class ScoreHuntService {
       return null;
     }
 
-    const matches = [...duration.matchAll(/(\d+)\s*(d|day|days|h|hr|hour|hours|m|min|mins|minute|minutes|s|sec|secs|second|seconds)/gi)];
+    const matches = [...duration.matchAll(/(\d+)\s*(d(?:ays?)?|h(?:r|ours?)?|m(?:in(?:ute)?s?)?|s(?:ec(?:ond)?s?)?)/gi)];
 
     if (matches.length === 0) {
       return null;
